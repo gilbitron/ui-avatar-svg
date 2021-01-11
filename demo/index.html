@@ -1,0 +1,126 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>UI Avatar SVG Demo</title>
+    <link href="https://unpkg.com/tailwindcss@2.0.2/dist/tailwind.min.css" rel="stylesheet">
+    <script src="../dist/ui-avatar-svg.umd.js"></script>
+</head>
+<body>
+    <div x-data="app()" x-init="() => init()" class="p-6 md:p-10 max-w-4xl mx-auto">
+        <h1 class="text-3xl font-bold mb-8">UI Avatar SVG Demo</h1>
+        <form class="grid gap-4 grid-cols-1 md:grid-cols-2 mb-8">
+            <div>
+                <label for="text" :class="labelClasses">Text</label>
+                <input type="text" id="text" x-model="text" :class="inputClasses">
+            </div>
+            <div>
+                <label for="size" :class="labelClasses">Size</label>
+                <input type="number" id="size" x-model="size" :class="inputClasses">
+            </div>
+            <div>
+                <label for="bgColor" :class="labelClasses">Background Color</label>
+                <input type="text" id="bgColor" x-model="bgColor" :class="inputClasses">
+            </div>
+            <div>
+                <label for="textColor" :class="labelClasses">Text Color</label>
+                <input type="text" id="textColor" x-model="textColor" :class="inputClasses">
+            </div>
+            <div>
+                <label for="fontFamily" :class="labelClasses">Font Family</label>
+                <input type="text" id="fontFamily" x-model="fontFamily" :class="inputClasses">
+            </div>
+            <div>
+                <label for="fontSize" :class="labelClasses">Font Size</label>
+                <select id="fontSize" x-model="fontSize" class="appearance-none" :class="inputClasses">
+                    <option value="0.1">0.1</option>
+                    <option value="0.2">0.2</option>
+                    <option value="0.3">0.3</option>
+                    <option value="0.4">0.4</option>
+                    <option value="0.5">0.5</option>
+                    <option value="0.6">0.6</option>
+                    <option value="0.7">0.7</option>
+                    <option value="0.8">0.8</option>
+                    <option value="0.9">0.9</option>
+                </select>
+            </div>
+            <div>
+                <label for="fontWeight" :class="labelClasses">Font Weight</label>
+                <select id="fontWeight" x-model="fontWeight" class="appearance-none" :class="inputClasses">
+                    <option value="100">100</option>
+                    <option value="200">200</option>
+                    <option value="300">300</option>
+                    <option value="400">400</option>
+                    <option value="500">500</option>
+                    <option value="600">600</option>
+                    <option value="700">700</option>
+                    <option value="800">800</option>
+                    <option value="900">900</option>
+                </select>
+            </div>
+            <div>
+                <label class="inline-block md:mt-7 cursor-pointer">
+                    <input type="checkbox" x-model="round">
+                    Round
+                </label>
+            </div>
+        </form>
+        <div class="mb-8">
+            <button class="px-4 py-2 text-gray-600 border-b-2 border-white hover:border-gray-400 focus:outline-none" :class="{ 'text-gray-900 border-blue-500': tab === 'preview' }" @click="tab = 'preview'">Preview</button>
+            <button class="px-4 py-2 text-gray-600 border-b-2 border-white hover:border-gray-400 focus:outline-none" :class="{ 'text-gray-900 border-blue-500': tab === 'code' }" @click="tab = 'code'">Code</button>
+            <div class="p-10 bg-gray-100 rounded-r-md rounded-bl-md">
+                <div class="overflow-auto" x-show="tab === 'preview'">
+                    <div x-html="html" class="flex justify-center"></div>
+                </div>
+                <div class="overflow-auto" x-show="tab === 'code'">
+                    <pre class="font-mono text-sm text-gray-700 whitespace-pre-wrap" x-text="html"></pre>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.8.0/dist/alpine.min.js" defer></script>
+    <script>
+        function app() {
+            return {
+                text: 'AB',
+                round: true,
+                size: 64,
+                bgColor: '#ff0000',
+                textColor: '#ffffff',
+                fontFamily: "-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif",
+                fontSize: 0.4,
+                fontWeight: 400,
+                tab: 'preview',
+                html: '',
+                labelClasses: 'block text-sm font-medium text-gray-700 mb-1',
+                inputClasses: 'block w-full px-3 py-1 shadow-sm border border-gray-300 rounded-md focus:border-blue-500',
+                init() {
+                    this.generateAvatar();
+                    this.$watch('text', () => this.generateAvatar());
+                    this.$watch('round', () => this.generateAvatar());
+                    this.$watch('size', () => this.generateAvatar());
+                    this.$watch('bgColor', () => this.generateAvatar());
+                    this.$watch('textColor', () => this.generateAvatar());
+                    this.$watch('fontFamily', () => this.generateAvatar());
+                    this.$watch('fontSize', () => this.generateAvatar());
+                    this.$watch('fontWeight', () => this.generateAvatar());
+                },
+                generateAvatar() {
+                    this.html = (new UIAvatarSvg())
+                        .text(this.text)
+                        .round(this.round)
+                        .size(this.size)
+                        .bgColor(this.bgColor)
+                        .textColor(this.textColor)
+                        .fontFamily(this.fontFamily)
+                        .fontSize(this.fontSize)
+                        .fontWeight(this.fontWeight)
+                        .generate();
+                }
+            }
+        }
+    </script>
+</body>
+</html>

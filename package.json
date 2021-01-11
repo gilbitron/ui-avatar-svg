@@ -1,0 +1,24 @@
+{
+  "name": "ui-avatar-svg",
+  "version": "1.0.0",
+  "description": "Generate SVG avatars with user initials in pure JS",
+  "author": "Gilbert Pellegrom <gilbert@pellegrom.me>",
+  "license": "MIT",
+  "keywords": [
+    "avatars",
+    "ui-avatars",
+    "initials",
+    "svg",
+    "javascript"
+  ],
+  "main": "dist/ui-avatar-svg.cjs.js",
+  "module": "dist/ui-avatar-svg.esm.js",
+  "browser": "dist/ui-avatar-svg.umd.js",
+  "scripts": {
+    "build": "rollup -c",
+    "dev": "rollup -c -w"
+  },
+  "devDependencies": {
+    "rollup": "^2.36.1"
+  }
+}
