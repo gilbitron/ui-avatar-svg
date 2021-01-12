@@ -1,5 +1,10 @@
 <p align="center"><img src="https://user-images.githubusercontent.com/203882/104310672-fc204680-54cb-11eb-80f7-44ea848422de.png" width="400" style="max-width:100%;"></p>
 
+<p align="center">
+<a href="https://www.npmjs.com/package/ui-avatar-svg"><img src="https://img.shields.io/npm/v/ui-avatar-svg.svg" alt="Version"></a>
+<a href="https://github.com/gilbitron/ui-avatar-svg"><img src="https://img.shields.io/github/license/gilbitron/ui-avatar-svg.svg" alt="License"></a>
+</p>
+
 # UI Avatar SVG
 
 Generate SVG avatars with user initials in pure JS.
