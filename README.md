@@ -1,3 +1,5 @@
+<p align="center"><img src="https://user-images.githubusercontent.com/203882/104310672-fc204680-54cb-11eb-80f7-44ea848422de.png" width="400" style="max-width:100%;"></p>
+
 # UI Avatar SVG
 
 Generate SVG avatars with user initials in pure JS.
